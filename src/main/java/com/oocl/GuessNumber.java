@@ -30,4 +30,16 @@ public class GuessNumber {
         Collections.shuffle(numbers);
         return numbers.subList(1, 5);
     }
+
+    public int countIntersection(List<Integer> listA, List<Integer> listB){
+        return listA.stream()
+                .filter(listB::contains)
+                .collect(Collectors.reducing(0, e -> 1, Integer::sum));
+    }
+
+    public String getFeedback(List<Integer> answer, List<Integer> input) {
+        String feedBackFormat = "%dA%dB";
+        int intersectionCount = countIntersection(answer, input);
+        return String.format(feedBackFormat, 0, intersectionCount);
+    }
 }
