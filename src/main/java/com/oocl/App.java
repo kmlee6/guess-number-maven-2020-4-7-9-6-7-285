@@ -3,9 +3,6 @@ package com.oocl;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Hello world!
- */
 public class App {
     static Scanner scanner = new Scanner(System.in);
 
@@ -16,7 +13,7 @@ public class App {
 
     public static void main(String[] args) {
         int remainingChance = 6;
-        List<Integer> answer = Arrays.asList(1, 2, 3, 4);
+//        List<Integer> answer = Arrays.asList(1, 2, 3, 4);
 //        GuessNumber newGame = new GuessNumber(answer);
         GuessNumber newGame = new GuessNumber();
         while (remainingChance > 0) {
