@@ -11,14 +11,14 @@ public class GuessNumberTest {
     @Test
     public void should_return_error_when_input_duplicate_number(){
         GuessNumber guessNumber = new GuessNumber();
-        boolean result = guessNumber.verifyInput(1, 2, 3, 3);
+        boolean result = guessNumber.verifyInput(Arrays.asList(1, 2 ,3 ,3));
         assertEquals(false, result);
     }
 
     @Test
     public void should_return_error_when_input_5_number() {
         GuessNumber guessNumber = new GuessNumber();
-        boolean result = guessNumber.verifyInput(1, 2, 3, 3, 4);
+        boolean result = guessNumber.verifyInput(Arrays.asList(1, 2 ,3 ,3, 5));
         assertEquals(false, result);
     }
 
@@ -28,7 +28,14 @@ public class GuessNumberTest {
         GuessNumber guessNumber = new GuessNumber();
         List<Integer> result = guessNumber.generateNumbers();
         long distinctCount = result.stream().distinct().count();
-        assertEquals(4, distinctCount);
-
+        assertEquals(expected, distinctCount);
     }
+
+    @Test
+    public void should_not_pass_when_include_invaild_number(){
+        GuessNumber guessNumber = new GuessNumber();
+        boolean result = guessNumber.verifyInput(Arrays.asList(1, 2, 3, 51));
+        assertEquals(false, result);
+    }
+
 }
