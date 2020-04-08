@@ -11,27 +11,26 @@ public class GuessNumber {
 
     public GuessNumber() {
         secretNumber = generateNumbers();
-        System.out.println(secretNumber);
     }
 
     public GuessNumber(List<Integer> secretNumber) {
         this.secretNumber = secretNumber;
     }
 
-    public boolean checkDuplicate(List<Integer> input) {
+    private boolean checkDuplicate(List<Integer> input) {
         return input.stream().distinct().count() == numOfGrid;
     }
 
-    public boolean checkNmberOfInput(List<Integer> input) {
+    private boolean checkNumberOfInput(List<Integer> input) {
         return input.stream().count() == numOfGrid;
     }
 
-    public boolean checkValidNumber(List<Integer> input) {
+    private boolean checkValidNumber(List<Integer> input) {
         return input.stream().filter(number -> number > 0 && number < 10).count() == numOfGrid;
     }
 
     public boolean verifyInput(List<Integer> inputs) {
-        return checkNmberOfInput(inputs) && checkDuplicate(inputs) && checkValidNumber(inputs);
+        return checkNumberOfInput(inputs) && checkDuplicate(inputs) && checkValidNumber(inputs);
     }
 
     public List<Integer> generateNumbers() {
@@ -40,13 +39,13 @@ public class GuessNumber {
         return numbers.subList(1, 5);
     }
 
-    public int countIntersection(List<Integer> listA, List<Integer> listB) {
+    private int countIntersection(List<Integer> listA, List<Integer> listB) {
         return listA.stream()
                 .filter(listB::contains)
                 .collect(Collectors.reducing(0, e -> 1, Integer::sum));
     }
 
-    public int countCorrectPosition(List<Integer> listA, List<Integer> listB) {
+    private int countCorrectPosition(List<Integer> listA, List<Integer> listB) {
         return (int) IntStream
                 .range(0, numOfGrid)
                 .filter(index -> listA.get(index) == listB.get(index))
@@ -54,7 +53,7 @@ public class GuessNumber {
     }
 
     public String getFeedback(List<Integer> input) {
-        String feedBackFormat = "%dA%dB";
+        final String feedBackFormat = "%dA%dB";
         int correctPositionCount = countCorrectPosition(secretNumber, input);
         int correctNumberCount = countIntersection(secretNumber, input) - correctPositionCount;
         return String.format(feedBackFormat, correctPositionCount, correctNumberCount);
