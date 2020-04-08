@@ -55,6 +55,6 @@ public class GuessNumberTest {
         List<Integer> answer = Arrays.asList(1, 2, 3, 4);
 
         String result = guessNumber.getFeedback(input, answer);
-        assertEquals("0A3B", result);
+        assertEquals("1A1B", result);
     }
 }

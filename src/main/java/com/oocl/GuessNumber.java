@@ -37,9 +37,17 @@ public class GuessNumber {
                 .collect(Collectors.reducing(0, e -> 1, Integer::sum));
     }
 
+    public int countCorrectPosition(List<Integer> listA, List<Integer> listB){
+        return (int) IntStream
+                .range(0, numOfGrid)
+                .filter(index -> listA.get(index)==listB.get(index))
+                .count();
+    }
+
     public String getFeedback(List<Integer> answer, List<Integer> input) {
         String feedBackFormat = "%dA%dB";
-        int intersectionCount = countIntersection(answer, input);
-        return String.format(feedBackFormat, 0, intersectionCount);
+        int correctPositionCount = countCorrectPosition(answer, input);
+        int correctNumberCount = countIntersection(answer, input) - correctPositionCount;
+        return String.format(feedBackFormat, correctPositionCount, correctNumberCount);
     }
 }
