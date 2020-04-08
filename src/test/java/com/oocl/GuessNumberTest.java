@@ -39,9 +39,19 @@ public class GuessNumberTest {
     }
 
     @Test
-    public void should_count_correct_number_of_input(){
+    public void should_count_3_correct_number(){
         GuessNumber guessNumber = new GuessNumber();
         List<Integer> input = Arrays.asList(2, 1, 5, 3);
+        List<Integer> answer = Arrays.asList(1, 2, 3, 4);
+
+        String result = guessNumber.getFeedback(input, answer);
+        assertEquals("0A3B", result);
+    }
+
+    @Test
+    public void should_count_1_correct_position_and_1_correct_number(){
+        GuessNumber guessNumber = new GuessNumber();
+        List<Integer> input = Arrays.asList(9, 2, 5, 3);
         List<Integer> answer = Arrays.asList(1, 2, 3, 4);
 
         String result = guessNumber.getFeedback(input, answer);
