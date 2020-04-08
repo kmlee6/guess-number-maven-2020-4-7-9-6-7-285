@@ -3,11 +3,21 @@ package com.oocl;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GuessNumber {
     final static int numOfGrid = 4;
+    List<Integer> secretNumber;
+
+    public GuessNumber(){
+        secretNumber = generateNumbers();
+    }
+
+    public GuessNumber(List<Integer> secretNumber){
+        this.secretNumber = secretNumber;
+    }
 
     public boolean checkDuplicate(List<Integer> input){
         return input.stream().distinct().count()==numOfGrid;
@@ -44,10 +54,10 @@ public class GuessNumber {
                 .count();
     }
 
-    public String getFeedback(List<Integer> answer, List<Integer> input) {
+    public String getFeedback(List<Integer> input) {
         String feedBackFormat = "%dA%dB";
-        int correctPositionCount = countCorrectPosition(answer, input);
-        int correctNumberCount = countIntersection(answer, input) - correctPositionCount;
+        int correctPositionCount = countCorrectPosition(secretNumber, input);
+        int correctNumberCount = countIntersection(secretNumber, input) - correctPositionCount;
         return String.format(feedBackFormat, correctPositionCount, correctNumberCount);
     }
 }
