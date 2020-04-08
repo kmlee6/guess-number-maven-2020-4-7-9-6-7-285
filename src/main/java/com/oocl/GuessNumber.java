@@ -13,6 +13,7 @@ public class GuessNumber {
 
     public GuessNumber(){
         secretNumber = generateNumbers();
+        System.out.println(secretNumber);
     }
 
     public GuessNumber(List<Integer> secretNumber){
