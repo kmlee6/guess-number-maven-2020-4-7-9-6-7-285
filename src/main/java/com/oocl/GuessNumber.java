@@ -34,7 +34,7 @@ public class GuessNumber {
     }
 
     public List<Integer> generateNumbers() {
-        List<Integer> numbers = IntStream.range(1, 10).boxed().collect(Collectors.toList());
+        List<Integer> numbers = IntStream.range(0, 10).boxed().collect(Collectors.toList());
         Collections.shuffle(numbers);
         return numbers.subList(1, 5);
     }
