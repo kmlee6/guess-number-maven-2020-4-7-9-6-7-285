@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GuessNumber {
-    final static int numOfGrid = 4;
+    final static int GRID_NUMBER = 4;
     List<Integer> secretNumber;
 
     public GuessNumber() {
@@ -18,15 +18,15 @@ public class GuessNumber {
     }
 
     private boolean checkDuplicate(List<Integer> input) {
-        return input.stream().distinct().count() == numOfGrid;
+        return input.stream().distinct().count() == GRID_NUMBER;
     }
 
     private boolean checkNumberOfInput(List<Integer> input) {
-        return input.stream().count() == numOfGrid;
+        return input.stream().count() == GRID_NUMBER;
     }
 
     private boolean checkValidNumber(List<Integer> input) {
-        return input.stream().filter(number -> number > 0 && number < 10).count() == numOfGrid;
+        return input.stream().filter(number -> number >= 0 && number < 10).count() == GRID_NUMBER;
     }
 
     public boolean verifyInput(List<Integer> inputs) {
@@ -47,7 +47,7 @@ public class GuessNumber {
 
     private int countCorrectPosition(List<Integer> listA, List<Integer> listB) {
         return (int) IntStream
-                .range(0, numOfGrid)
+                .range(0, GRID_NUMBER)
                 .filter(index -> listA.get(index) == listB.get(index))
                 .count();
     }
