@@ -7,7 +7,7 @@ public class App {
 
     public static void main(String[] args) {
         int remainingChance = 6;
-        Inputer scanner = new Inputer(System.in);
+        Inputer scanner = new ConsoleInputer();
 //        List<Integer> answer = Arrays.asList(1, 2, 3, 4);
 //        GuessNumber newGame = new GuessNumber(answer);
         GuessNumber newGame = new GuessNumber();
